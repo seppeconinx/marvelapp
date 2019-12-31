@@ -6,7 +6,7 @@ public class Character {
     private int id;
     private String name;
     private String description;
-    private Date modified;
+    private String modified;
     private Thumbnail thumbnail;
 
     public int getId() {
@@ -33,11 +33,11 @@ public class Character {
         this.description = description;
     }
 
-    public Date getModified() {
+    public String getModified() {
         return modified;
     }
 
-    public void setModified(Date modified) {
+    public void setModified(String modified) {
         this.modified = modified;
     }
 

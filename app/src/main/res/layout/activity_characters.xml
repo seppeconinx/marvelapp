@@ -6,6 +6,8 @@
     android:name="com.example.marvelapp.CharacterFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#BEB7A4"
+    android:orientation = "vertical"
     tools:listitem="@layout/fragment_character" >
 
 

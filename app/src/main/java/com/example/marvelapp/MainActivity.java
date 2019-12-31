@@ -2,10 +2,17 @@ package com.example.marvelapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
+
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

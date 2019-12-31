@@ -3,10 +3,13 @@ package com.example.marvelapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -20,6 +23,7 @@ import com.example.marvelapp.api.CharacterData;
 import com.example.marvelapp.api.CharacterResults;
 import com.example.marvelapp.api.Thumbnail;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -31,12 +35,20 @@ public class CharactersActivity extends AppCompatActivity {
 
     private GridView gridView;
     private CustomAdapter customAdapter;
+    public static List<Character> characters;
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_characters);
         gridView = findViewById(R.id.gridView);
 
+        characters = new ArrayList<>();
         Call<CharacterData> call = API.apiInterfance().getCharacters("characters?ts=1577638249838&apikey=6e1818d5f229df319d2c672e89a21e67&hash=3dc32c375328875f95351f0b73d2a334&limit=50&offset=0");
 
         call.enqueue(new Callback<CharacterData>() {
@@ -46,8 +58,26 @@ public class CharactersActivity extends AppCompatActivity {
                     CharacterData characterData = response.body();
                     CharacterResults characterResults = characterData.getCharacterResults();
                     List<Character> characterList = characterResults.getCharacters();
+                    characters = characterList;
                     customAdapter = new CustomAdapter(characterList, CharactersActivity.this);
                     gridView.setAdapter(customAdapter);
+
+                    gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Intent intent = new Intent();
+
+                            //intent.putExtra("name", characters.get(position).getName());
+                            //intent.putExtra("modified", characters.get(position).getModified());
+                            //intent.putExtra("description", characters.get(position).getDescription());
+
+                            Thumbnail charThumbnail = characters.get(position).getThumbnail();
+                            String thumbnail = charThumbnail.getPath() + "." + charThumbnail.getExtension();
+                            //intent.putExtra("thumbnail", thumbnail);
+
+                            startActivity(new Intent(getApplicationContext(), ItemActivity.class).putExtra("name", characters.get(position).getName()).putExtra("modified", characters.get(position).getModified()).putExtra("description", characters.get(position).getDescription()).putExtra("thumbnail", thumbnail));
+                        }
+                    });
                 }
                 else{
                     Toast.makeText(getApplicationContext(), "An error occured", Toast.LENGTH_SHORT).show();
@@ -61,6 +91,7 @@ public class CharactersActivity extends AppCompatActivity {
         });
 
     }
+
 
     public class CustomAdapter extends BaseAdapter {
 

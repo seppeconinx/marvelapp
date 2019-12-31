@@ -2,13 +2,112 @@ package com.example.marvelapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.example.marvelapp.api.API;
+import com.example.marvelapp.api.Character;
+import com.example.marvelapp.api.CharacterData;
+import com.example.marvelapp.api.CharacterResults;
+import com.example.marvelapp.api.Thumbnail;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 public class CharactersActivity extends AppCompatActivity {
 
+    private GridView gridView;
+    private CustomAdapter customAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_characters);
+        gridView = findViewById(R.id.gridView);
+
+        Call<CharacterData> call = API.apiInterfance().getCharacters("characters?ts=1577638249838&apikey=6e1818d5f229df319d2c672e89a21e67&hash=3dc32c375328875f95351f0b73d2a334&limit=50&offset=0");
+
+        call.enqueue(new Callback<CharacterData>() {
+            @Override
+            public void onResponse(Call<CharacterData> call, Response<CharacterData> response) {
+                if(response.isSuccessful()) {
+                    CharacterData characterData = response.body();
+                    CharacterResults characterResults = characterData.getCharacterResults();
+                    List<Character> characterList = characterResults.getCharacters();
+                    customAdapter = new CustomAdapter(characterList, CharactersActivity.this);
+                    gridView.setAdapter(customAdapter);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "An error occured", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CharacterData> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "An error occured:" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    public class CustomAdapter extends BaseAdapter {
+
+        public List<Character> characterList;
+        public Context context;
+
+        public CustomAdapter(List<Character> characterList, Context context) {
+            this.characterList = characterList;
+            this.context = context;
+        }
+
+        @Override
+        public int getCount() {
+            return characterList.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            View view = LayoutInflater.from(context).inflate(R.layout.fragment_character, null);
+
+            TextView name = view.findViewById(R.id.textView);
+            ImageView image = view.findViewById(R.id.imageView);
+
+            name.setText(characterList.get(position).getName());
+            Thumbnail charthumbnail = characterList.get(position).getThumbnail();
+            String charImage = charthumbnail.getPath() + "." + charthumbnail.getExtension();
+
+            Glide.with(context)
+                    .load(charImage)
+                    .into(image);
+
+            return view;
+        }
+    }
+
+    public static void main(String[] args) {
+
     }
 }

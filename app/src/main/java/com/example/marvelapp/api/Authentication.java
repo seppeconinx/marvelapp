@@ -18,13 +18,13 @@ public class Authentication {
     private String md5Key;
 
 
-    private FirebaseConfig config;
+    //private FirebaseConfig config;
 
     public Authentication() {
         timeStamp = String.valueOf(System.currentTimeMillis());
-        config = new FirebaseConfig();
-        publicKey = config.getKey(KEY_PUBLIC);
-        privateKey = config.getKey(KEY_PRIVATE);
+        //config = new FirebaseConfig();
+        publicKey = "6e1818d5f229df319d2c672e89a21e67";
+        privateKey = "f5304518e599e95dbfefb45349ec939c9d1966ac";
     }
 
     public String getTimeStamp() {

@@ -1,2 +1,2 @@
 # Marvelapp
-Android application that uses the Marvel API to display characters with some information
+Android application made in Java which uses the Marvel API to display characters with some information

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MarvelApp</string>
+    <string name="Enter">Starten</string>
+    <string name="Logo">Het Marvel logo</string>
+    <string name="CharName">Naam personage</string>
+    <string name="Modified">Laatst gewijzigd</string>
+    <string name="CharImage">Afbeelding personage</string>
+    <string name="CharDesc">Beschrijving personage</string>
+</resources>

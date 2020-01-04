@@ -6,36 +6,40 @@
     android:background="#BEB7A4"
     android:layout_height="match_parent"
     tools:context=".ItemActivity">
+
     <ImageView
         android:id="@+id/characterImage"
         android:layout_width="150dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_height="150dp" />
+        android:layout_height="150dp"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/CharImage" />
+
     <TextView
         android:id="@+id/characterName"
         android:layout_width="wrap_content"
-        android:text="Character name"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/characterImage"
-        android:textSize="22sp"
         android:layout_centerHorizontal="true"
-        android:layout_height="wrap_content"/>
+        android:text="@string/CharName"
+        android:textSize="22sp" />
+
     <TextView
         android:id="@+id/lastModified"
         android:layout_width="wrap_content"
-        android:text="Last modified"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/characterName"
-        android:textSize="15sp"
         android:layout_centerHorizontal="true"
-        android:layout_height="wrap_content"/>
+        android:text="@string/Modified"
+        android:textSize="15sp" />
+
     <TextView
         android:id="@+id/characterDescription"
         android:layout_width="wrap_content"
-        android:text="Character description"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/lastModified"
-        android:textSize="15sp"
+        android:layout_centerHorizontal="true"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:layout_centerHorizontal="true"
-        android:layout_height="wrap_content"/>
+        android:text="@string/CharDesc"
+        android:textSize="15sp" />
 </RelativeLayout>

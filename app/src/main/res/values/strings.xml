@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MarvelApp</string>
+    <string name="Enter">Enter</string>
+    <string name="Logo">The Marvel Logo</string>
+    <string name="CharName">Character name</string>
+    <string name="Modified">Last modified</string>
+    <string name="CharImage">Character image</string>
+    <string name="CharDesc">Character description</string>
 </resources>

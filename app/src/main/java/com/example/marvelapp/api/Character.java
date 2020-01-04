@@ -1,8 +1,13 @@
 package com.example.marvelapp.api;
 
-import java.util.Date;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "character_table")
 public class Character {
+
+    @PrimaryKey
     private int id;
     private String name;
     private String description;

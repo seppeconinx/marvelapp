@@ -1,4 +1,4 @@
-package com.example.marvelapp.db;
+/*package com.example.marvelapp.db;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
@@ -33,4 +33,4 @@ public interface CharacterDao {
 
     @Query("SELECT * FROM character_table ORDER BY name ASC")
     LiveData<List<Character>> getAllOrderedyName();
-}
+}*/

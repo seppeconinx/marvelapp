@@ -53,7 +53,7 @@ public class CharactersActivity extends AppCompatActivity {
 
     public void makeApiCall(){
         characters = new ArrayList<>();
-        Call<CharacterData> call = API.apiInterfance().getCharacters("characters?ts=1577638249838&apikey=6e1818d5f229df319d2c672e89a21e67&hash=3dc32c375328875f95351f0b73d2a334&limit=50&offset=0");
+        Call<CharacterData> call = API.apiInterfance().getCharacters("characters?ts=1577638249838&apikey=6e1818d5f229df319d2c672e89a21e67&hash=3dc32c375328875f95351f0b73d2a334&limit=50&offset=300");
 
         call.enqueue(new Callback<CharacterData>() {
             @Override

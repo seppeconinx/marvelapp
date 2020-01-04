@@ -1,4 +1,4 @@
-package com.example.marvelapp.db;
+/*package com.example.marvelapp.db;
 
 import android.os.AsyncTask;
 
@@ -20,4 +20,4 @@ public class insertAsyncTask extends AsyncTask<Character, Void, Character> {
     protected Character doInBackground(Character... characters) {
         return null;
     }
-}
+}*/

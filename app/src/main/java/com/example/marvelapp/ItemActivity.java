@@ -38,7 +38,7 @@ public class ItemActivity extends AppCompatActivity {
         characterName.setText(name);
         lastModified.setText("Last modified: " + modified);
         if(description.isEmpty()){
-            characterDescription.setText("No description available");
+            characterDescription.setText("No description provided by Marvel API");
         }
         else{
             characterDescription.setText(description);

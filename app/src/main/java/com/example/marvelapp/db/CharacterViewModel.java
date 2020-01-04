@@ -1,4 +1,4 @@
-package com.example.marvelapp.db;
+/*package com.example.marvelapp.db;
 
 import android.app.Application;
 
@@ -26,4 +26,4 @@ public class CharacterViewModel extends ViewModel {
     public void insert(Character character){
         repo.insertCharacters(character);
     }
-}
+}*/

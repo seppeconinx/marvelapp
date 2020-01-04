@@ -4,11 +4,12 @@ package com.example.marvelapp.api;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "character_table")
+//@Entity(tableName = "character_table")
 public class Character {
 
-    @PrimaryKey
+    //@PrimaryKey
     private int id;
+
     private String name;
     private String description;
     private String modified;

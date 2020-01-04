@@ -1,4 +1,4 @@
-package com.example.marvelapp.db;
+/*package com.example.marvelapp.db;
 
 import android.content.Context;
 
@@ -18,4 +18,4 @@ public abstract class myDatabase extends RoomDatabase {
                 "character_database")
                 .build();
     }
-}
+}*/

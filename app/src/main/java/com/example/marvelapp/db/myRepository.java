@@ -1,4 +1,4 @@
-package com.example.marvelapp.db;
+/*package com.example.marvelapp.db;
 
 import android.app.Application;
 
@@ -26,6 +26,6 @@ public class myRepository {
         return this.allCharacters;
     }
 
-}
+}*/
 
 

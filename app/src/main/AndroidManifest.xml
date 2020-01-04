@@ -16,7 +16,7 @@
         <activity android:name=".ItemActivity" android:parentActivityName=".CharactersActivity"> <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value="com.example.marvelapp.CharactersActivity"/></activity>
-        <activity android:name=".CharactersActivity" android:configChanges = "keyboardHidden|orientation|screenSize"/>
+        <activity android:name=".CharactersActivity" android:configChanges = "keyboardHidden|screenSize"/>
         <activity android:name=".MainActivity" android:configChanges = "keyboardHidden|orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,13 +1,21 @@
-package com.example.marvelapp.api;
+package com.example.marvelapp.db;
 
 
-public class Character {
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+@Entity(tableName = "character_table")
+public class dbCharacter {
+
+    @PrimaryKey(autoGenerate = true)
     private int id;
+    @ColumnInfo(name = "name")
     private String name;
+    @ColumnInfo(name = "description")
     private String description;
+    @ColumnInfo(name = "last_modified")
     private String modified;
-    private Thumbnail thumbnail;
 
     public int getId() {
         return id;
@@ -39,13 +47,5 @@ public class Character {
 
     public void setModified(String modified) {
         this.modified = modified;
-    }
-
-    public Thumbnail getThumbnail() {
-        return thumbnail;
-    }
-
-    public void setThumbnail(Thumbnail thumbnail) {
-        this.thumbnail = thumbnail;
     }
 }

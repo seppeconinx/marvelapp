@@ -1,6 +1,7 @@
 package com.example.marvelapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.app.Activity;
 import android.content.Context;
@@ -23,7 +24,10 @@ import com.example.marvelapp.api.Character;
 import com.example.marvelapp.api.CharacterData;
 import com.example.marvelapp.api.CharacterResults;
 import com.example.marvelapp.api.Thumbnail;
+import com.example.marvelapp.db.dbCharacter;
+import com.example.marvelapp.db.myDatabase;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +41,7 @@ public class CharactersActivity extends AppCompatActivity {
     private GridView gridView;
     private CustomAdapter customAdapter;
     public static List<Character> characters;
+    public static myDatabase db;
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
@@ -48,6 +53,12 @@ public class CharactersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_characters);
         gridView = findViewById(R.id.gridView);
+
+        db = Room.databaseBuilder(this.getApplicationContext(),
+                myDatabase.class,
+                "character_database")
+                .allowMainThreadQueries()
+                .build();
 
         makeApiCall();
     }
@@ -63,6 +74,17 @@ public class CharactersActivity extends AppCompatActivity {
                     CharacterData characterData = response.body();
                     CharacterResults characterResults = characterData.getCharacterResults();
                     List<Character> characterList = characterResults.getCharacters();
+
+
+                    //Add data to local database
+                    for(Character c : characterList){
+                        dbCharacter dbChar = new dbCharacter();
+                        dbChar.setName(c.getName());
+                        dbChar.setDescription(c.getDescription());
+                        dbChar.setModified(c.getModified());
+                        db.characterDao().insert(dbChar);
+                    }
+
                     characters = characterList;
                     customAdapter = new CustomAdapter(characterList, CharactersActivity.this);
                     gridView.setAdapter(customAdapter);
